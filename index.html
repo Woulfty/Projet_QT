@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Index</title>
+    <script type="text/javascript">
+        
+        function verif_formulaire()
+        {
+            if(document.formulaire.nom.value == "")  {
+                alert("Veuillez entrer votre nom!");
+                document.formulaire.nom.focus();
+                return false;
+            }
+            if(document.formulaire.mot_de_passe.value == "") {
+                alert("Veuillez entrer votre mot de passe!");
+                document.formulaire.mot_de_passe.focus();
+                return false;
+            }
+        }
+    </script>
+    </head>
+    <body>
+        <h1>Connexion</h1>
+        <form name="formulaire"  method="post" onSubmit="return verif_formulaire()">
+            <pre>
+        
+                <input id="pseudo" type="text" size="40" placeholder="nom" name="nom">
+                <input id="mdp" type="text" size="40" placeholder="mot de passe" name="mot_de_passe"> <form>
+        
+                <input id="send" type="submit" value="Envoyer">
+        
+            </pre>
+        </form>
+        
+</body>
+</html>
