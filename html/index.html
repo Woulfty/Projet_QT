@@ -6,11 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/connexion.css">
     <title>connexion</title>
+    <script>
+        function afficher(){
+        var saisie =document.getElementById("message").value;
+        alert(saisie);
+        }
+        </script>
 </head>
 <body>
     <div id="container">
-        <!-- zone de connexion -->
-        
+        <!-- 
         <form action="verification.php" method="POST">
             <h1>Connexion</h1>
             
@@ -25,5 +30,18 @@
            
         </form>
     </div>
+-->
+    <div>
+
+        <h3>Envoyer un message</h3>
+
+        <form>
+
+            <input type="text" id="message"  value="" size="30">
+            <input type="button" id="bouton" value="Afficher" size="30" onclick="afficher()">
+    
+        </form>
+    </div>
+    <script type="text/javascript" src="data.js"></script>
 </body>
 </html>
