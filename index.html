@@ -4,14 +4,20 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/connexion.css">
+    <!--<link rel="stylesheet" href="src/css/connexion.css">-->
     <title>connexion</title>
     <script>
-        var socket = new WebSocket("ws://127.0.0.1:1000");
+        //VM
+        //var socket = new WebSocket("ws://192.168.64.183:1234");
+        //local
+        var socket = new WebSocket("ws://127.0.0.1:1234");
+        socket.onopen = function(event) { onOpen(event); };
+        socket.onmessage = function(event) { onMessage(event); };
         
         // Lorsque le serveur envoi un message.
         this.onmessage = function(event) {
-            console.log("Message:", event.data);
+            console.log("message:", event.data);
+            return evt.data;
         };
 
         // Récupération des erreurs.
@@ -28,7 +34,6 @@
             this.onclose = function(event) {
                 console.log("Connexion terminé.");
             };
-
             
         };
 
@@ -37,9 +42,12 @@
             alert(data);
             
             socket.send(data);
-            
+        }    
+
+        function onMessage (evt){
+            alert (evt.data);
+            this.dataInput = evt.data;
         }
-        
     </script>
 </head>
 <body>
@@ -71,7 +79,7 @@
 
         </form>
     </div>
-    <script type="text/javascript" src="senddata.js"></script>
+    <script type="text/javascript" src="src/js/senddata.js"></script>
     <!--<script type="text/javascript" src="receivedata.js"></script>-->
 </body>
 </html>
