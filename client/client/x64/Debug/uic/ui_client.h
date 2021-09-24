@@ -110,7 +110,7 @@ public:
         MDPlineEdit_2->setGeometry(QRect(400, 190, 151, 21));
         lineEdit_3 = new QLineEdit(centralWidget);
         lineEdit_3->setObjectName(QString::fromUtf8("lineEdit_3"));
-        lineEdit_3->setGeometry(QRect(410, 240, 141, 21));
+        lineEdit_3->setGeometry(QRect(400, 240, 151, 21));
         clientClass->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(clientClass);
         menuBar->setObjectName(QString::fromUtf8("menuBar"));
