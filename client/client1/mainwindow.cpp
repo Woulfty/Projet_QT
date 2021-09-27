@@ -45,7 +45,7 @@ void MainWindow::readSocket()
 		QString ext = fileName.split(".")[1];
 		QString size = header.split(",")[2].split(":")[1].split(";")[0];
 
-		if (QMessageBox::Yes == QMessageBox::question(this, "QTCPServer", QString("You are receiving an attachment from sd:%1 of size: %2 bytes, called %3. Do you want to accept it?").arg(socket->socketDescriptor()).arg(size).arg(fileName)))
+		if (QMessageBox::Yes == QMessageBox::question(this, "QTCPServer", QString("voulez vous envoyez la socket?").arg(socket->socketDescriptor()).arg(size).arg(fileName)))
 		{
 			QString filePath = QFileDialog::getSaveFileName(this, tr("Save File"), QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation) + "/" + fileName, QString("File (*.%1)").arg(ext));
 
@@ -117,10 +117,10 @@ void MainWindow::on_pushButton_sendMessage_clicked()
 			ui->lineEdit_message->clear();
 		}
 		else
-			QMessageBox::critical(this, "QTCPClient", "Socket doesn't seem to be opened");
+			QMessageBox::critical(this, "QTCPClient", "Socket ne pas souvrir");
 	}
 	else
-		QMessageBox::critical(this, "QTCPClient", "Not connected");
+		QMessageBox::critical(this, "QTCPClient", "non connecter");
 }
 
 void MainWindow::on_pushButton_sendAttachment_clicked()
@@ -132,7 +132,7 @@ void MainWindow::on_pushButton_sendAttachment_clicked()
 			QString filePath = QFileDialog::getOpenFileName(this, ("Select an attachment"), QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation), ("File (*.json *.txt *.png *.jpg *.jpeg)"));
 
 			if (filePath.isEmpty()) {
-				QMessageBox::critical(this, "QTCPClient", "You haven't selected any attachment!");
+				QMessageBox::critical(this, "QTCPClient", "ça marche!");
 				return;
 			}
 
