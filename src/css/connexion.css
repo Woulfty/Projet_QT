@@ -1,10 +1,15 @@
 body{
-    background: #dddddd;
+    font-family:"SF Pro Display","SF Pro Icons","Helvetica Neue","Helvetica","Arial",sans-serif;
+    background-image: url("../img/images.jpg");
+    background-attachment: fixed;
+    background-size: cover;
+    padding: 1%;
 }
 #container{
     width:400px;
     margin:0 auto;
     margin-top:10%;
+    
 }
 /* Bordered form */
 form {
@@ -12,9 +17,8 @@ form {
     padding: 30px;
     border: 1px solid #f1f1f1;
     background: #fff;
-    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
-#container h1{
+#container {
     width: 38%;
     margin: 0 auto;
     padding-bottom: 10px;
@@ -29,10 +33,9 @@ input[type=text], input[type=password] {
     border: 1px solid #ccc;
     box-sizing: border-box;
 }
-
+ 
 /* Set a style for all buttons */
 input[type=submit] {
-    background-color: #444444;
     color: white;
     padding: 14px 20px;
     margin: 8px 0;
@@ -42,11 +45,48 @@ input[type=submit] {
 }
 input[type=submit]:hover {
     background-color: white;
-    color: #383838;
-    border: 1px solid #0f0f0f;
 }
 .lien{
     text-align: center;
     margin-left: 130px;
     color:red;
+}
+.bouton {
+    padding: 10px 30px; 
+    background: #949494; 
+    color: white; 
+}
+.boutonsend {
+    padding: 10px 30px; 
+    background: #949494; 
+    color: white;
+    border: 1px solid rgb(255, 255, 255);
+}
+.boutonsend:hover {
+    background-image: linear-gradient(to left, rgb(255, 0, 157), rgb(255, 115, 0), rgb(29, 184, 76), rgb(22, 206, 219), rgb(119, 16, 150));    
+    -webkit-background-clip: text;
+    -moz-background-clip: text; 
+    background-clip: text;
+    color: transparent;
+}
+.bouton:hover{
+    position: relative 100;
+    width: 100%;
+    background-image: linear-gradient(to left, rgb(255, 0, 157), rgb(255, 115, 0), rgb(29, 184, 76), rgb(22, 206, 219), rgb(119, 16, 150));    
+    -webkit-background-clip: text;
+    -moz-background-clip: text; 
+    background-clip: text;
+    color: transparent;
+}
+.titre {
+    position: relative100;
+    width: 100%;
+    background-image: linear-gradient(to left, rgb(255, 0, 157), rgb(255, 115, 0), rgb(29, 184, 76), rgb(22, 206, 219), rgb(119, 16, 150));    
+    -webkit-background-clip: text;
+    -moz-background-clip: text; 
+    background-clip: text;
+    color: transparent;
+}
+.white{
+    color: white;
 }
