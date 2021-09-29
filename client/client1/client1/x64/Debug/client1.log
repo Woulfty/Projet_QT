@@ -1,0 +1,15 @@
+﻿  uic mainwindow.ui
+  rcc mainwindow.qrc
+  moc mainwindow.h
+   RCC: Warning: No resources in 'F:\Projet_QT-main\client\client1\mainwindow.qrc'.
+  mainwindow.cpp
+  main.cpp
+c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\xlocnum(1168): fatal error C1088: Impossible de vider le fichier intermédiaire du compilateur : 'C:\Users\JULIEN~1\AppData\Local\Temp\_CL_6405a678ex' : No space left on device (compilation du fichier source main.cpp)
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\xlocnum(932): note: pendant la compilation de la fonction membre '<Inconnu>' (classe <Inconnu>) (compilation du fichier source main.cpp)
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\xlocnum(729): note: voir la référence à l'instanciation de la fonction modèle 'int std::num_get<wchar_t,std::istreambuf_iterator<wchar_t,std::char_traits<wchar_t>>>::_Getffld(char *,_InIt &,_InIt &,std::ios_base &,int *) const' en cours de compilation
+          with
+          [
+              _InIt=std::istreambuf_iterator<wchar_t,std::char_traits<wchar_t>>
+          ] (compilation du fichier source main.cpp)
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\xlocnum(1856): note: voir la référence à l'instanciation de classe modèle 'std::num_get<wchar_t,std::istreambuf_iterator<wchar_t,std::char_traits<wchar_t>>>' en cours de compilation (compilation du fichier source main.cpp)
+c:\qt\5.14.2\msvc2017_64\include\qtgui\qtextformat.h(376): fatal error C1088: Impossible de vider le fichier intermédiaire du compilateur : 'C:\Users\JULIEN~1\AppData\Local\Temp\_CL_10763cd1ex' : No space left on device (compilation du fichier source mainwindow.cpp)
