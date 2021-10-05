@@ -1,21 +1,38 @@
-#define MYSERVER_H
+#include <iostream>
+#include <memory>
 
+#include <QDebug>
 #include <QObject>
+#include <QList>
 #include <QTcpSocket>
 #include <QTcpServer>
-#include <QDebug>
+#include "bddserver.h"
+
+class QtserverWebSocket;
 
 class QtserverTCP : public QObject {
 	Q_OBJECT
+		QList<QTcpSocket*> tcpclients;
+		QMap<QTcpSocket*, QString> tcpsocketToUsername;
+		bddserver *bdd;
+private:
+	QTcpSocket * tcpSocket;
+	QTcpServer * tcpServer;
+	QtserverWebSocket * wsServer;
+
 public:
-	QtserverTCP(QObject *parent, uint16_t port);
+	QtserverTCP(bddserver *bdd, uint16_t port);
+	void setWSServer(QtserverWebSocket * server);
+	QMap<QTcpSocket*, QString> & getSockets() {
+		return tcpsocketToUsername;
+	}
 
 public slots:
-	void SocketConnected();
+	void onNewConnection();
+	void processTextMessage();
+	void selectMessageTCP(QSqlQuery query, QTcpSocket *tcp);
+	void socketDisconnected();
 
-private:
-	QTcpSocket * socket;
-	QTcpServer * serverTCP;
-
+signals:
+	void closed();
 };
-#pragma once

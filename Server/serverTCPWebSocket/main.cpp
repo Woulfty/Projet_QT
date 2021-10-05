@@ -7,9 +7,12 @@ int main(int argc, char *argv[])
 {
 	QCoreApplication a(argc, argv);
 	bddserver *bdd = new bddserver();
-	bdd->bddInit("QMYSQL", "127.0.0.1", "servertcpwebsocket", "root", "");
+	bdd->bddInit("QMYSQL", "192.168.65.58", "servertcpwebsocket", "root", "root");
 	QtserverWebSocket serverWebSocket(bdd, 1234);
-	QtserverTCP serverTCP(Q_NULLPTR, 4321);
+	QtserverTCP serverTcp(bdd, 4321);
+
+	serverTcp.setWSServer(&serverWebSocket);
+	serverWebSocket.setTcpServer(&serverTcp);
 
 	return a.exec();
 }
