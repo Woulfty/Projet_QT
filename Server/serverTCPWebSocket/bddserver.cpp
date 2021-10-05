@@ -1,6 +1,7 @@
 #include <QDebug>
 #include "bddserver.h"
 
+//Initialisation de le BDD
 void bddserver::bddInit(QString type, QString host, QString name, QString login, QString mdp) {
 	QSqlDatabase bdd = QSqlDatabase::addDatabase(type);
 	bdd.setHostName(host);
@@ -11,6 +12,7 @@ void bddserver::bddInit(QString type, QString host, QString name, QString login,
 	bddConnect(bdd);
 }
 
+//Vérification de la connexion à la BDD
 void bddserver::bddConnect(QSqlDatabase bdd) {
 	bool ok = bdd.open();
 	if (ok == true) {
@@ -21,6 +23,7 @@ void bddserver::bddConnect(QSqlDatabase bdd) {
 	}
 }
 
+//Fonction de connexion de l'utilisateur
 QString bddserver::connexion(QString login, QString mdp) {
 	QSqlQuery query;
 	QString pseudo = "";
@@ -38,6 +41,7 @@ QString bddserver::connexion(QString login, QString mdp) {
 	return pseudo;
 }
 
+//Fonction d'inscription de l'utilisateur
 QString bddserver::inscription(QString login, QString mdp) {
 	QSqlQuery query;
 	QString pseudo = login;
@@ -48,6 +52,7 @@ QString bddserver::inscription(QString login, QString mdp) {
 	return pseudo;
 }
 
+//Fonction d'ajout de message à la BDD
 void bddserver::insertMessage(QString login, QString message) {
 	QSqlQuery query;
 	query.prepare("INSERT INTO message(`iduser`,`message`) SELECT id, :message FROM user WHERE user.login = :username");

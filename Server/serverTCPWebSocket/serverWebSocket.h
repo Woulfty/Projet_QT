@@ -36,9 +36,16 @@ public:
 	}
 
 public slots:
+	//Connexion du serveur WS
 	void onNewConnection();
+
+	//Récupère les messages envoyé par le client
 	void processTextMessage(const QString& message);
+	
+	//Envoie les 100 derniers messages aux clients 
 	void selectMessageWS(QSqlQuery query, QWebSocket *ws);
+	
+	//Déconnexion du serveur WS
 	void socketDisconnected();
 
 signals:

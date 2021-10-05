@@ -28,9 +28,16 @@ public:
 	}
 
 public slots:
+	//Connexion du server TCP
 	void onNewConnection();
+	
+	//Récupère les messages envoyé par le client
 	void processTextMessage();
+	
+	//Envoie les 100 derniers messages aux clients 
 	void selectMessageTCP(QSqlQuery query, QTcpSocket *tcp);
+	
+	//Déconnexion du serveur TCP
 	void socketDisconnected();
 
 signals:

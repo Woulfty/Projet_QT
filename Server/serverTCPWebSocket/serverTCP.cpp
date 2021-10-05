@@ -20,6 +20,7 @@ void QtserverTCP::setWSServer(QtserverWebSocket * server)
 	this->wsServer = server;
 }
 
+//Connexion du serveur TCP
 void QtserverTCP::onNewConnection() {
 	QTcpSocket * socket = this->tcpServer->nextPendingConnection();
 	QObject::connect(socket, SIGNAL(readyRead()), this, SLOT(processTextMessage()));
@@ -28,6 +29,7 @@ void QtserverTCP::onNewConnection() {
 	this->tcpclients.push_back(socket);
 }
 
+//Récupère les messages envoyé par le client
 void QtserverTCP::processTextMessage() {
 	QTcpSocket * tcp = qobject_cast<QTcpSocket*>(sender());
 	QByteArray data = tcp->readAll();
@@ -44,7 +46,6 @@ void QtserverTCP::processTextMessage() {
 		if (pseudo.size() > 0){
 			tcpsocketToUsername[tcp] = pseudo;
 			tcp->write("Authtrue");
-			//selectMessageTCP(query, tcp);
 		}
 	}
 	//Incription de l'utilisateur
@@ -55,7 +56,6 @@ void QtserverTCP::processTextMessage() {
 		QString pseudo = bdd->inscription(login, mdp);
 		tcpsocketToUsername[tcp] = pseudo;
 		tcp->write("Salttrue");
-		//selectMessageTCP(query, tcp);
 	}
 	//Affichage des messages
 	if (message.startsWith("Bdd") == true) {
@@ -68,10 +68,11 @@ void QtserverTCP::processTextMessage() {
 			(*it)->write(sentence.toUtf8());
 		}
 
-		/*auto wsclients = wsServer->getSockets();
+		auto wsclients = wsServer->getSockets();
 		for (auto it = wsclients.begin(); it != wsclients.end(); it++) {
-			(*it.value)->sendTextMessage(sentence.toUtf8());
-		}*/
+			QWebSocket * ws = it.key();
+			ws->sendTextMessage(sentence.toUtf8());
+		}
 	}
 	//Renvoie les 100 derniers message
 	if (message == "sendok") {
@@ -79,6 +80,7 @@ void QtserverTCP::processTextMessage() {
 	}
 }
 
+//Envoie les 100 derniers messages aux clients 
 void QtserverTCP::selectMessageTCP(QSqlQuery query, QTcpSocket *tcp) {
 	query.exec("SELECT `login`,`message` FROM `user`, `message` WHERE id=iduser ORDER BY `date` LIMIT 100");
 	while (query.next()) {
@@ -89,6 +91,7 @@ void QtserverTCP::selectMessageTCP(QSqlQuery query, QTcpSocket *tcp) {
 	}
 }
 
+//Déconnexion du serveur TCP
 void QtserverTCP::socketDisconnected() {
 	QTcpSocket * tcp = qobject_cast<QTcpSocket*>(sender());
 	qInfo() << "Server TCP: Deconnexion";

@@ -27,6 +27,7 @@ void QtserverWebSocket::onNewConnection(){
 	this->wsclients.push_back(socket);
 }
 
+//Récupère les messages envoyé par le client
 void QtserverWebSocket::processTextMessage(const QString& message){
 	QWebSocket * ws = qobject_cast<QWebSocket*>(sender());
 	QSqlQuery query;
@@ -64,13 +65,14 @@ void QtserverWebSocket::processTextMessage(const QString& message){
 			(*it)->sendTextMessage(sentence);
 		}
 
-		/*auto tcpclients = tcpServer->setTcpServer();
+		auto tcpclients = tcpServer->getSockets();
 		for (auto it = tcpclients.begin(); it != tcpclients.end(); it++) {
-			(*it.value)->write(sentence.toUtf8());
-		}*/
+			it.key()->write(sentence.toUtf8());
+		}
 	}
 }
 
+//Envoie les 100 derniers messages aux clients 
 void QtserverWebSocket::selectMessageWS(QSqlQuery query, QWebSocket *ws) {
 	query.exec("SELECT `login`,`message` FROM `user`, `message` WHERE id=iduser ORDER BY `date` LIMIT 100");
 	while (query.next()) {
@@ -81,6 +83,7 @@ void QtserverWebSocket::selectMessageWS(QSqlQuery query, QWebSocket *ws) {
 	}
 }
 
+//Déconnexion du server WS
 void QtserverWebSocket::socketDisconnected(){
 	QWebSocket * ws = qobject_cast<QWebSocket*>(sender());
 	qInfo() << "Server WebSocket: Deconnexion";
